@@ -7563,6 +7563,14 @@ horizontal.</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Solution:</strong></p>
+<img alt="No description has been provided for this image" src="step1.png" width="500"/>
+<img alt="No description has been provided for this image" src="step2.png" width="500"/>
+<img alt="No description has been provided for this image" src="step3.png" width="500"/>
+<img alt="No description has been provided for this image" src="final.png" width="500"/>
+<p>In Step 1, the first decision stump (green horizontal line, y = c1) separates the data roughly by the y-coordinate: samples above the line are predicted as “−” and those below as “+”. But several points near the boundary are misclassified.</p>
+<p>In Step 2, AdaBoost increases the weights(enlarge) of those misclassified samples so that the next weak classifier focuses more on them. A second decision stump (purple vertical line, x = c2) is added. This stump divides the plane vertically: samples to the left of the line are predicted “−”, and those to the right are predicted “+”. And it still remains incorrectly classified.</p>
+<p>In Step 3, the algorithm again emphasizes(enlarge) the remaining misclassified points. A third decision stump (light-blue vertical line, x = c3) is introduced on the right side to correct these errors. Now the combination of three stumps—two vertical and one horizontal—successfully separates all the red “−” and blue “+” samples.</p>
+<p>Finally, the Final Check panel confirms that with these three decision stumps, all points are correctly classified (as shown by the yellow check marks).</p>
 </div>
 </div>
 </div>
@@ -7910,7 +7918,7 @@ above.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
@@ -8271,7 +8279,9 @@ above.</p>
             <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">isleaf</span><span class="p">:</span>
                 <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">decision</span> <span class="o">=</span> <span class="s1">'split attribute = </span><span class="si">{:d}</span><span class="s1">; gain = </span><span class="si">{:f}</span><span class="s1">; number of samples = </span><span class="si">{:d}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">index_split_on</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">'gain'</span><span class="p">],</span> <span class="n">node</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">'num_samples'</span><span class="p">])</span>
+                <span class="n">decision</span> <span class="o">=</span> <span class="s1">'split attribute = </span><span class="si">{:d}</span><span class="s1">; gain = </span><span class="si">{:f}</span><span class="s1">; '</span> \
+                <span class="s1">'number of samples = </span><span class="si">{:d}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">index_split_on</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">'gain'</span><span class="p">],</span> <span class="n">node</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">'num_samples'</span><span class="p">])</span>
             <span class="n">left</span> <span class="o">=</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">'0 -&gt; '</span><span class="o">+</span> <span class="n">print_subtree</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\t\t</span><span class="s1">'</span><span class="p">)</span>
             <span class="n">right</span> <span class="o">=</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">'1 -&gt; '</span><span class="o">+</span> <span class="n">print_subtree</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">indent</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\t\t</span><span class="s1">'</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">decision</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="n">left</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span>
